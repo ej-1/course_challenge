@@ -24,7 +24,7 @@ async function getCourses() {
 
 async function getCourse(slug) {
   const course = `/${slug}`;
-  const endpoint = GET_COURSE_ENDPOINT + course;
+  const endpoint = GET_COURSES_ENDPOINT + course;
   let response = await fetch(endpoint, REQUEST_CONFIG("GET"));
   return response.json();
 }
