@@ -6,7 +6,10 @@ import { getCourses, getCourse } from "../../services/api";
 class SearchRoute extends Component {
   constructor(props) {
     super(props);
-    this.state = { courses: "" };
+    this.state = {
+      courses: "",
+      coursesDetails: []
+    };
   }
 
   componentDidMount = () => {
@@ -18,7 +21,9 @@ class SearchRoute extends Component {
   // rename later
   onSelect = slug => {
     getCourse(slug)
-      .then(data => this.setState({ course: data }))
+      .then(data =>
+        this.setState({ coursesDetails: this.state.coursesDetails.push(data) })
+      )
       .catch(error => console.log(error.message));
   };
 
