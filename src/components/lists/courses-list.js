@@ -11,7 +11,7 @@ class coursesList extends Component {
     for (var course in this.props.courses) {
       let courseData = courses[course];
       coursesRows.push(
-        <tr key={courseData.title}>
+        <tr key={courseData.title} onClick={() => this.props.onSelect(course)}>
           <td>{courseData.url}</td>
           <td>{courseData.title}</td>
           <td>{courseData.author}</td>

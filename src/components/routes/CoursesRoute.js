@@ -16,8 +16,8 @@ class SearchRoute extends Component {
   };
 
   // rename later
-  onSelect = id => {
-    getCourse(id)
+  onSelect = slug => {
+    getCourse(slug)
       .then(data => this.setState({ course: data }))
       .catch(error => console.log(error.message));
   };
@@ -25,7 +25,9 @@ class SearchRoute extends Component {
   render() {
     return (
       <div className="courses-route">
-        {this.state.courses && <CoursesList courses={this.state.courses} />}
+        {this.state.courses && (
+          <CoursesList courses={this.state.courses} onSelect={this.onSelect} />
+        )}
       </div>
     );
   }
