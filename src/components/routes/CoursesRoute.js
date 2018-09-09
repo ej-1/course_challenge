@@ -9,7 +9,7 @@ class SearchRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      courses: [],
+      courses: null,
       coursesDetails: [],
       totalCost: 0,
       selectedCourses: [],
@@ -69,8 +69,8 @@ class SearchRoute extends Component {
   render() {
     return (
       <div className="courses-route">
-        <Grid>
-          {this.state.courses && (
+        {this.state.courses && (
+          <Grid>
             <Row>
               <Col xs={12} mdOffset={2} md={8} lgOffset={2} lg={8}>
                 <CoursesList
@@ -79,16 +79,16 @@ class SearchRoute extends Component {
                 />
               </Col>
             </Row>
-          )}
-          <Row>
-            <Col xs={12} mdOffset={2} md={3} lgOffset={2} lg={3}>
-              <SumCounter
-                sum={this.state.totalCost}
-                currencySign={this.state.currencySign}
-              />
-            </Col>
-          </Row>
-        </Grid>
+            <Row>
+              <Col xs={12} mdOffset={2} md={3} lgOffset={2} lg={3}>
+                <SumCounter
+                  sum={this.state.totalCost}
+                  currencySign={this.state.currencySign}
+                />
+              </Col>
+            </Row>
+          </Grid>
+        )}
       </div>
     );
   }
