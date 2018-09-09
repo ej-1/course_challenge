@@ -9,7 +9,7 @@ class SearchRoute extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      courses: "",
+      courses: [],
       coursesDetails: [],
       totalCost: 0,
       selectedCourses: [],
@@ -17,10 +17,23 @@ class SearchRoute extends Component {
     };
   }
 
-  componentDidMount = () => {
-    getCourses()
-      .then(data => this.setState({ courses: data.courses })) // maybe not do data.
-      .catch(error => console.log(error.message));
+  componentDidMount = async () => {
+    const data = await getCourses();
+    this.setState({ courses: data.courses });
+    // get couse details immediately after setting courses.
+    if (data.courses) {
+      const slugs = Object.keys(data.courses);
+      this.getCoursesDetails(slugs);
+    }
+  };
+
+  getCoursesDetails = slugs => {
+    const courseDetails = [];
+    slugs.forEach(async slug => {
+      const course = await getCourse(slug);
+      courseDetails.push(course);
+    });
+    this.setState({ coursesDetails: courseDetails });
   };
 
   highlight = slug => {
@@ -29,24 +42,21 @@ class SearchRoute extends Component {
   };
 
   // rename later
-  onSelect = url => {
-    this.highlight(url); // hightlight selected element.
-    this.setState({ selectedCourses: [...this.state.selectedCourses, url] });
+  onSelect = slug => {
+    this.highlight(slug);
+    const selectedCourse = this.state.coursesDetails.filter(
+      course => course.slug === slug
+    )[0];
+    const cost = selectedCourse.price.EU.total;
+    const currencyFormat = this.currencyFormatter(cost);
+    const amount = currencyFormat[0];
+    const currencySign = currencyFormat[1];
 
-    //if (this.state.coursesDetails)
-    // this.coursesDetails.filter(course => course.url === url);
-    getCourse(url)
-      .then(data => {
-        const currencyFormat = this.currencyFormatter(data.price.EU.total);
-        const amount = currencyFormat[0];
-        const currencySign = currencyFormat[1];
-        this.setState({
-          coursesDetails: [...this.state.coursesDetails, data],
-          totalCost: this.state.totalCost + amount,
-          currencySign: currencySign
-        });
-      })
-      .catch(error => console.log(error.message));
+    this.setState({
+      totalCost: this.state.totalCost + amount,
+      currencySign: currencySign,
+      selectedCourses: [slug, ...this.state.selectedCourses]
+    });
   };
 
   // extract to separate module
