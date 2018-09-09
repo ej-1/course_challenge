@@ -32,7 +32,7 @@ class coursesList extends Component {
         <tr>
           <th>Title</th>
           <th>Author</th>
-          <th>Next Dtart Date</th>
+          <th>Next Start Date</th>
         </tr>
         {coursesRows}
       </table>
