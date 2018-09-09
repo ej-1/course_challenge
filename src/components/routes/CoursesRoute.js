@@ -8,7 +8,8 @@ class SearchRoute extends Component {
     super(props);
     this.state = {
       courses: "",
-      coursesDetails: []
+      coursesDetails: [],
+      totalCost: 0
     };
   }
 
@@ -20,11 +21,25 @@ class SearchRoute extends Component {
 
   // rename later
   onSelect = slug => {
+    //if (this.state.coursesDetails)
     getCourse(slug)
-      .then(data =>
-        this.setState({ coursesDetails: this.state.coursesDetails.push(data) })
-      )
+      .then(data => {
+        this.setState({
+          coursesDetails: [...this.state.coursesDetails, data],
+          totalCost: this.calculateTotalCost([
+            ...this.state.coursesDetails,
+            data
+          ])
+        });
+      })
       .catch(error => console.log(error.message));
+  };
+
+  // extract and make more generic.
+  calculateTotalCost = coursesDetails => {
+    const costs = coursesDetails.map(course => course.price.EU.total); // fix regional currrency later
+    console.log(costs);
+    return costs.reduce((a, b) => a + b);
   };
 
   render() {
