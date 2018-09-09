@@ -37,8 +37,8 @@ class SearchRoute extends Component {
 
   // extract and make more generic.
   calculateTotalCost = coursesDetails => {
-    const costs = coursesDetails.map(course => course.price.EU.total); // fix regional currrency later
-    console.log(costs);
+    let costs = coursesDetails.map(course => course.price.EU.total); // fix regional currrency later
+    costs = costs.map(cost => parseInt(cost.split(/([0-9]+)/)[1])); // make this clearer.
     return costs.reduce((a, b) => a + b);
   };
 
