@@ -12,7 +12,8 @@ class SearchRoute extends Component {
       courses: "",
       coursesDetails: [],
       totalCost: 0,
-      selectedCourses: []
+      selectedCourses: [],
+      currencySign: null
     };
   }
 
@@ -36,19 +37,23 @@ class SearchRoute extends Component {
     // this.coursesDetails.filter(course => course.url === url);
     getCourse(url)
       .then(data => {
+        const currencyFormat = this.currencyFormatter(data.price.EU.total);
+        const amount = currencyFormat[0];
+        const currencySign = currencyFormat[1];
         this.setState({
           coursesDetails: [...this.state.coursesDetails, data],
-          totalCost: this.calculateTotalCost(data, this.state.totalCost)
+          totalCost: this.state.totalCost + amount,
+          currencySign: currencySign
         });
       })
       .catch(error => console.log(error.message));
   };
 
-  // extract and make more generic.
-  calculateTotalCost = (course, previousTotalCost) => {
-    let cost = course.price.EU.total; // fix regional currrency later
-    cost = parseInt(cost.split(/([0-9]+)/)[1]); // make this clearer.
-    return previousTotalCost + cost;
+  // extract to separate module
+  currencyFormatter = currencyString => {
+    const currencySign = currencyString.split(/([0-9]+)/)[0];
+    const amount = parseInt(currencyString.split(/([0-9]+)/)[1]);
+    return [amount, currencySign];
   };
 
   render() {
@@ -67,7 +72,10 @@ class SearchRoute extends Component {
           )}
           <Row>
             <Col xs={12} mdOffset={2} md={3} lgOffset={2} lg={3}>
-              <SumCounter sum={this.state.totalCost} />
+              <SumCounter
+                sum={this.state.totalCost}
+                currencySign={this.state.currencySign}
+              />
             </Col>
           </Row>
         </Grid>
