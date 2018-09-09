@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import CourseRow from "../lists/course-row";
+import CourseRow from "./course-row";
 import PropTypes from "prop-types";
-import "../lists/courses-list.css";
+import "../lists/courses-table.css";
 
 // USE FUNCTIONAL COMPONENT INSTEAD
-class coursesList extends Component {
+class CoursesTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,8 +40,8 @@ class coursesList extends Component {
   }
 }
 
-export default coursesList;
+export default CoursesTable;
 
-coursesList.propTypes = {
+CoursesTable.propTypes = {
   courses: PropTypes.array
 };

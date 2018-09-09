@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import CoursesList from "../lists/courses-list";
+import CoursesTable from "../lists/courses-table";
 import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
 import { Grid, Row, Col } from "react-bootstrap";
@@ -73,7 +73,7 @@ class SearchRoute extends Component {
           <Grid>
             <Row>
               <Col xs={12} mdOffset={2} md={8} lgOffset={2} lg={8}>
-                <CoursesList
+                <CoursesTable
                   courses={this.state.courses}
                   onSelect={this.onSelect}
                 />
