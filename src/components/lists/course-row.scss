@@ -1,3 +1,6 @@
+@import "./main.scss";
+
 .selected {
-  background: green;
+  background: $primary-background;
+  color: $primary-font-color;
 }
