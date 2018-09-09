@@ -22,7 +22,7 @@ class SearchRoute extends Component {
   };
 
   highlight = slug => {
-    const element = docuqment.getElementById(slug);
+    const element = document.getElementById(slug);
     element.className = "selected";
   };
 
