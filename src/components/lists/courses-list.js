@@ -27,7 +27,16 @@ class coursesList extends Component {
       );
     }
     // COULD EXTRACT TABLE INTO SEPARATE COMPONENT!!
-    return <table className="courses-table">{coursesRows}</table>;
+    return (
+      <table className="courses-table">
+        <tr>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Next Dtart Date</th>
+        </tr>
+        {coursesRows}
+      </table>
+    );
   }
 }
 
