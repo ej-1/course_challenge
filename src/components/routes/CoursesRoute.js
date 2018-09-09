@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import CoursesList from "../lists/courses-list";
+import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
 
 class SearchRoute extends Component {
@@ -48,6 +49,7 @@ class SearchRoute extends Component {
         {this.state.courses && (
           <CoursesList courses={this.state.courses} onSelect={this.onSelect} />
         )}
+        <SumCounter sum={this.state.totalCost} />
       </div>
     );
   }
