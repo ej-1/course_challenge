@@ -20,9 +20,15 @@ class SearchRoute extends Component {
       .catch(error => console.log(error.message));
   };
 
+  highlight = slug => {
+    const element = document.getElementById(slug);
+    element.className = "selected";
+  };
+
   // rename later
   onSelect = slug => {
     //if (this.state.coursesDetails)
+    this.highlight(slug); // hightlight selected element.
     getCourse(slug)
       .then(data => {
         this.setState({
