@@ -12,7 +12,6 @@ class CourseRow extends Component {
         id={slug}
         onClick={() => this.props.onSelect(slug)}
       >
-        <td>{courseData.url}</td>
         <td>{courseData.title}</td>
         <td>{courseData.author}</td>
         <td>{courseData.next_start_formatted}</td>
