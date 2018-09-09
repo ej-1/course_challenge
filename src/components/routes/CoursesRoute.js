@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import CoursesList from "../lists/courses-list";
 import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
+import { Grid, Row, Col } from "react-bootstrap";
 
 class SearchRoute extends Component {
   constructor(props) {
@@ -53,10 +54,23 @@ class SearchRoute extends Component {
   render() {
     return (
       <div className="courses-route">
-        {this.state.courses && (
-          <CoursesList courses={this.state.courses} onSelect={this.onSelect} />
-        )}
-        <SumCounter sum={this.state.totalCost} />
+        <Grid>
+          {this.state.courses && (
+            <Row className="show-grid">
+              <Col xs={12} mdOffset={2} md={8} lgOffset={2} lg={8}>
+                <CoursesList
+                  courses={this.state.courses}
+                  onSelect={this.onSelect}
+                />
+              </Col>
+            </Row>
+          )}
+          <Row className="show-grid">
+            <Col xs={12} mdOffset={2} md={3} lgOffset={2} lg={3}>
+              <SumCounter sum={this.state.totalCost} />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }
