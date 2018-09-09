@@ -1,6 +1,6 @@
 import React from "react";
-//import "../cart/sum-counter.css";
+import "../cart/sum-counter.css";
 
-const Sum = ({ sum }) => <div className="cart-sum">{sum}</div>;
+const Sum = ({ sum }) => <div className="sum-counter">Total cost: {sum}</div>;
 
 export default Sum;
