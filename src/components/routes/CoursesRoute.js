@@ -10,7 +10,8 @@ class SearchRoute extends Component {
     this.state = {
       courses: "",
       coursesDetails: [],
-      totalCost: 0
+      totalCost: 0,
+      selectedCourses: []
     };
   }
 
@@ -21,32 +22,32 @@ class SearchRoute extends Component {
   };
 
   highlight = slug => {
-    const element = document.getElementById(slug);
+    const element = docuqment.getElementById(slug);
     element.className = "selected";
   };
 
   // rename later
-  onSelect = slug => {
+  onSelect = url => {
+    this.highlight(url); // hightlight selected element.
+    this.setState({ selectedCourses: [...this.state.selectedCourses, url] });
+
     //if (this.state.coursesDetails)
-    this.highlight(slug); // hightlight selected element.
-    getCourse(slug)
+    // this.coursesDetails.filter(course => course.url === url);
+    getCourse(url)
       .then(data => {
         this.setState({
           coursesDetails: [...this.state.coursesDetails, data],
-          totalCost: this.calculateTotalCost([
-            ...this.state.coursesDetails,
-            data
-          ])
+          totalCost: this.calculateTotalCost(data, this.state.totalCost)
         });
       })
       .catch(error => console.log(error.message));
   };
 
   // extract and make more generic.
-  calculateTotalCost = coursesDetails => {
-    let costs = coursesDetails.map(course => course.price.EU.total); // fix regional currrency later
-    costs = costs.map(cost => parseInt(cost.split(/([0-9]+)/)[1])); // make this clearer.
-    return costs.reduce((a, b) => a + b);
+  calculateTotalCost = (course, previousTotalCost) => {
+    let cost = course.price.EU.total; // fix regional currrency later
+    cost = parseInt(cost.split(/([0-9]+)/)[1]); // make this clearer.
+    return previousTotalCost + cost;
   };
 
   render() {

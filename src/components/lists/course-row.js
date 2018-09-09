@@ -5,11 +5,12 @@ import "../lists/course-row.css";
 class CourseRow extends Component {
   render() {
     const courseData = this.props.courseData;
+    const slug = this.props.slug;
     return (
       <tr
         key={courseData.title}
-        id={courseData.title}
-        onClick={() => this.props.onSelect(courseData.title)}
+        id={slug}
+        onClick={() => this.props.onSelect(slug)}
       >
         <td>{courseData.url}</td>
         <td>{courseData.title}</td>

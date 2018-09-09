@@ -19,11 +19,12 @@ class coursesList extends Component {
     for (var course in this.props.courses) {
       let courseData = courses[course];
       coursesRows.push(
-        <CourseRow courseData={courseData} onSelect={this.props.onSelect} />
+        <CourseRow
+          courseData={courseData}
+          slug={course}
+          onSelect={this.props.onSelect}
+        />
       );
-    }
-    {
-      console.log("INSIDE LIST", coursesRows);
     }
     // COULD EXTRACT TABLE INTO SEPARATE COMPONENT!!
     return <table className="courses-table">{coursesRows}</table>;
