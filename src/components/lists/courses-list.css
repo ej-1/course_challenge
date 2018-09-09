@@ -2,11 +2,13 @@
   background-color: #fff;
   margin-top: 70px;
   font-size: 15px;
-  font-family: Helvetica, sans-serif; }
-  .courses-table th {
-    text-align: left; }
-  .courses-table td {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
-    font-weight: 100; }
+  font-family: Helvetica, sans-serif;
+}
+.courses-table th {
+  padding: 20px;
+  text-align: left;
+}
+.courses-table td {
+  padding: 20px;
+  font-weight: 100;
+}
