@@ -56,7 +56,7 @@ class SearchRoute extends Component {
       <div className="courses-route">
         <Grid>
           {this.state.courses && (
-            <Row className="show-grid">
+            <Row>
               <Col xs={12} mdOffset={2} md={8} lgOffset={2} lg={8}>
                 <CoursesList
                   courses={this.state.courses}
@@ -65,7 +65,7 @@ class SearchRoute extends Component {
               </Col>
             </Row>
           )}
-          <Row className="show-grid">
+          <Row>
             <Col xs={12} mdOffset={2} md={3} lgOffset={2} lg={3}>
               <SumCounter sum={this.state.totalCost} />
             </Col>
