@@ -37,11 +37,8 @@ class SearchRoute extends Component {
   };
 
   getCoursesDetails = slugs => {
-    const courseDetails = [];
-    slugs.forEach(async slug => {
-      const course = await getCourse(slug);
-      courseDetails.push(course);
-    });
+    const courseRequests = slugs.map(slug => getCourse(slug));
+    const courseDetails = await Promise.all(courseRequests);
     this.setState({ coursesDetails: courseDetails });
   };
 
