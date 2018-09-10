@@ -61,10 +61,9 @@ class SearchRoute extends Component {
       const selectedCourse = this.state.coursesDetails.find(
         course => course.slug === slug
       );
+
       const cost = selectedCourse.price[this.state.userContinentCode].total;
-      const currencyFormat = this.currencyFormatter(cost);
-      const amount = currencyFormat[0];
-      const currencySign = currencyFormat[1];
+      const { amount, currencySign } = this.currencyFormatter(cost);
 
       this.setState({
         totalCost: this.state.totalCost + amount,
@@ -78,7 +77,7 @@ class SearchRoute extends Component {
   currencyFormatter = currencyString => {
     const currencySign = currencyString.split(/([0-9]+)/)[0];
     const amount = parseInt(currencyString.split(/([0-9]+)/)[1]);
-    return [amount, currencySign];
+    return { amount, currencySign };
   };
 
   render() {
