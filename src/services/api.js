@@ -1,8 +1,5 @@
 import fetch from "cross-fetch";
-import {
-  GET_COURSES_ENDPOINT,
-  GET_COURSE_ENDPOINT
-} from "../services/api-endpoints";
+import { GET_COURSES_ENDPOINT } from "../services/api-endpoints";
 
 const REQUEST_CONFIG = requestType => ({
   method: requestType,
