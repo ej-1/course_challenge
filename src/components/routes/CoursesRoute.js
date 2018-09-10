@@ -80,7 +80,7 @@ class SearchRoute extends Component {
 
   render() {
     return (
-      <div className="courses-route">
+      <div>
         {this.state.courses && (
           <Grid>
             <Row>
