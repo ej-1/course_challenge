@@ -3,10 +3,10 @@ import CourseRow from "./course-row";
 
 const RowMapper = (courses, onSelect) => {
   const coursesRows = [];
-  for (var course in courses) {
-    let courseData = courses[course];
+  for (var slug in courses) {
+    let courseData = courses[slug];
     coursesRows.push(
-      <CourseRow courseData={courseData} slug={course} onSelect={onSelect} />
+      <CourseRow courseData={courseData} slug={slug} onSelect={onSelect} />
     );
   }
   return coursesRows;
