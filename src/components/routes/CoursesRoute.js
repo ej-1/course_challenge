@@ -52,13 +52,14 @@ class SearchRoute extends Component {
   };
 
   onSelect = slug => {
+    const selectedCourse = this.state.coursesDetails.find(
+      course => course.slug === slug
+    );
     // If a course has not been selected before. This is to prevent doing things again
     // and adding costs again.
-    if (!this.state.selectedCourses.includes(slug)) {
+    // Also check that the details for the selected course has been fetched.
+    if (!this.state.selectedCourses.includes(slug) && selectedCourse) {
       this.highlight(slug);
-      const selectedCourse = this.state.coursesDetails.find(
-        course => course.slug === slug
-      );
 
       const cost = selectedCourse.price[this.state.userContinentCode].total;
       const { amount, currencySign } = this.currencyFormatter(cost);
