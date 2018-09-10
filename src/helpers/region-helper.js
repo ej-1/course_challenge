@@ -13,7 +13,7 @@ const handleCountryCode = (countryCode, continentCode) => {
     return "UK";
   } else if (continentCode === "EU" && countryCode !== "GB") {
     return "EU";
-  } else if (continentCode === "NA") {
+  } else {
     return "NA";
   }
 };
