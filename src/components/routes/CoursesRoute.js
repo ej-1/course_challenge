@@ -3,6 +3,7 @@ import fetch from "cross-fetch";
 import CoursesTable from "../lists/courses-table";
 import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
+import { handleCountryCode, getIPInfo } from "../../helpers/region-helper";
 import { Grid, Row, Col } from "react-bootstrap";
 
 class SearchRoute extends Component {
@@ -25,9 +26,9 @@ class SearchRoute extends Component {
       const slugs = Object.keys(data.courses);
       this.getCoursesDetails(slugs);
     }
-    const IPInfo = await this.getIPInfo();
+    const IPInfo = await getIPInfo();
     this.setState({
-      userContinentCode: this.handleCountryCode(
+      userContinentCode: handleCountryCode(
         IPInfo.country,
         IPInfo.continent_code
       )
@@ -71,21 +72,6 @@ class SearchRoute extends Component {
     const currencySign = currencyString.split(/([0-9]+)/)[0];
     const amount = parseInt(currencyString.split(/([0-9]+)/)[1]);
     return [amount, currencySign];
-  };
-
-  getIPInfo = async () => {
-    const response = await fetch("https://ipapi.co/json/");
-    return response.json();
-  };
-
-  handleCountryCode = (countryCode, continentCode) => {
-    if (countryCode === "GB") {
-      return "UK";
-    } else if (continentCode === "EU" && countryCode !== "GB") {
-      return "EU";
-    } else if (continentCode === "NA") {
-      return "NA";
-    }
   };
 
   render() {
