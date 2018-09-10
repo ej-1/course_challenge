@@ -51,9 +51,8 @@ class SearchRoute extends Component {
     element.className = "selected";
   };
 
-  // rename later
   onSelect = slug => {
-    // If it course has not been selected before. This is to prevent doing things again
+    // If a course has not been selected before. This is to prevent doing things again
     // and adding costs again.
     if (!this.state.selectedCourses.includes(slug)) {
       this.highlight(slug);
@@ -72,7 +71,7 @@ class SearchRoute extends Component {
     }
   };
 
-  // extract to separate module
+  // TODO: extract to separate module later.
   currencyFormatter = currencyString => {
     const currencySign = currencyString.split(/([0-9]+)/)[0];
     const amount = parseInt(currencyString.split(/([0-9]+)/)[1]);
