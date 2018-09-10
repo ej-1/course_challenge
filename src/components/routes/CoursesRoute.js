@@ -51,20 +51,22 @@ class SearchRoute extends Component {
 
   // rename later
   onSelect = slug => {
-    this.highlight(slug);
-    const selectedCourse = this.state.coursesDetails.filter(
-      course => course.slug === slug
-    )[0];
-    const cost = selectedCourse.price[this.state.userContinentCode].total;
-    const currencyFormat = this.currencyFormatter(cost);
-    const amount = currencyFormat[0];
-    const currencySign = currencyFormat[1];
+    if (!this.state.selectedCourses.includes(slug)) {
+      this.highlight(slug);
+      const selectedCourse = this.state.coursesDetails.filter(
+        course => course.slug === slug
+      )[0];
+      const cost = selectedCourse.price[this.state.userContinentCode].total;
+      const currencyFormat = this.currencyFormatter(cost);
+      const amount = currencyFormat[0];
+      const currencySign = currencyFormat[1];
 
-    this.setState({
-      totalCost: this.state.totalCost + amount,
-      currencySign: currencySign,
-      selectedCourses: [slug, ...this.state.selectedCourses]
-    });
+      this.setState({
+        totalCost: this.state.totalCost + amount,
+        currencySign: currencySign,
+        selectedCourses: [slug, ...this.state.selectedCourses]
+      });
+    }
   };
 
   // extract to separate module
