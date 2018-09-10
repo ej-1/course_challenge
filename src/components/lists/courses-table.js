@@ -1,18 +1,7 @@
-import React, { Component } from "react";
-import CourseRow from "./course-row";
+import React from "react";
+import RowMapper from "./mappers";
 import PropTypes from "prop-types";
 import "../lists/courses-table.css";
-
-const RowMapper = (courses, onSelect) => {
-  const coursesRows = [];
-  for (var course in courses) {
-    let courseData = courses[course];
-    coursesRows.push(
-      <CourseRow courseData={courseData} slug={course} onSelect={onSelect} />
-    );
-  }
-  return coursesRows;
-};
 
 const CoursesTable = ({ courses, onSelect }) => (
   <table className="courses-table">
