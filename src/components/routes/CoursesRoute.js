@@ -14,7 +14,8 @@ class SearchRoute extends Component {
       coursesDetails: [],
       totalCost: 0,
       selectedCourses: [],
-      currencySign: null
+      currencySign: null,
+      userContinentCode: null
     };
   }
 
