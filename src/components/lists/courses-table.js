@@ -1,6 +1,5 @@
 import React from "react";
 import RowMapper from "./mappers";
-import PropTypes from "prop-types";
 import "../lists/courses-table.css";
 
 const CoursesTable = ({ courses, onSelect }) => (
@@ -15,7 +14,3 @@ const CoursesTable = ({ courses, onSelect }) => (
 );
 
 export default CoursesTable;
-
-CoursesTable.propTypes = {
-  courses: PropTypes.array
-};
