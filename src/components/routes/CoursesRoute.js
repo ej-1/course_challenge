@@ -19,7 +19,7 @@ class SearchRoute extends Component {
     };
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     getCourses()
       .then(data => {
         this.setState({ courses: data.courses });
@@ -39,7 +39,7 @@ class SearchRoute extends Component {
         })
       )
       .catch(error => console.log(error));
-  };
+  }
 
   getCoursesDetails = async slugs => {
     const courseRequests = slugs.map(slug => getCourse(slug));
