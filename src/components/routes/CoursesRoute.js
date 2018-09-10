@@ -19,7 +19,7 @@ class SearchRoute extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     getCourses()
       .then(data => {
         this.setState({ courses: data.courses });
@@ -60,7 +60,7 @@ class SearchRoute extends Component {
       this.highlight(slug);
       const selectedCourse = this.state.coursesDetails.find(
         course => course.slug === slug
-      )[0];
+      );
       const cost = selectedCourse.price[this.state.userContinentCode].total;
       const currencyFormat = this.currencyFormatter(cost);
       const amount = currencyFormat[0];
