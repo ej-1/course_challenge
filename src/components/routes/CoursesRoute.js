@@ -20,23 +20,24 @@ class SearchRoute extends Component {
   }
 
   componentDidMount = async () => {
-    const data = await getCourses();
-    this.setState({ courses: data.courses });
-    // get couse details immediately after setting courses.
-    if (data.courses) {
+    getCourses().then(data => {
+      this.setState({ courses: data.courses });
+      // get course details immediately after setting courses.
       const slugs = Object.keys(data.courses);
       this.getCoursesDetails(slugs);
-    }
-    const IPInfo = await getIPInfo();
-    this.setState({
-      userContinentCode: handleCountryCode(
-        IPInfo.country,
-        IPInfo.continent_code
-      )
     });
+
+    getIPInfo().then(IPInfo =>
+      this.setState({
+        userContinentCode: handleCountryCode(
+          IPInfo.country,
+          IPInfo.continent_code
+        )
+      })
+    );
   };
 
-  getCoursesDetails = slugs => {
+  getCoursesDetails = async slugs => {
     const courseRequests = slugs.map(slug => getCourse(slug));
     const courseDetails = await Promise.all(courseRequests);
     this.setState({ coursesDetails: courseDetails });
