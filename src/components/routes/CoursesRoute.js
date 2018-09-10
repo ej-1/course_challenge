@@ -20,21 +20,25 @@ class SearchRoute extends Component {
   }
 
   componentDidMount = async () => {
-    getCourses().then(data => {
-      this.setState({ courses: data.courses });
-      // get course details immediately after setting courses.
-      const slugs = Object.keys(data.courses);
-      this.getCoursesDetails(slugs);
-    });
-
-    getIPInfo().then(IPInfo =>
-      this.setState({
-        userContinentCode: handleCountryCode(
-          IPInfo.country,
-          IPInfo.continent_code
-        )
+    getCourses()
+      .then(data => {
+        this.setState({ courses: data.courses });
+        // get course details immediately after setting courses.
+        const slugs = Object.keys(data.courses);
+        this.getCoursesDetails(slugs);
       })
-    );
+      .catch(error => console.log(error));
+
+    getIPInfo()
+      .then(IPInfo =>
+        this.setState({
+          userContinentCode: handleCountryCode(
+            IPInfo.country,
+            IPInfo.continent_code
+          )
+        })
+      )
+      .catch(error => console.log(error));
   };
 
   getCoursesDetails = async slugs => {
