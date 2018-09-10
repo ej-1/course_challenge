@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import fetch from "cross-fetch";
 import CoursesTable from "../lists/courses-table";
 import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
@@ -25,6 +25,13 @@ class SearchRoute extends Component {
       const slugs = Object.keys(data.courses);
       this.getCoursesDetails(slugs);
     }
+    const IPInfo = await this.getIPInfo();
+    this.setState({
+      userContinentCode: this.handleCountryCode(
+        IPInfo.country,
+        IPInfo.continent_code
+      )
+    });
   };
 
   getCoursesDetails = slugs => {
@@ -47,7 +54,7 @@ class SearchRoute extends Component {
     const selectedCourse = this.state.coursesDetails.filter(
       course => course.slug === slug
     )[0];
-    const cost = selectedCourse.price.EU.total;
+    const cost = selectedCourse.price[this.state.userContinentCode].total;
     const currencyFormat = this.currencyFormatter(cost);
     const amount = currencyFormat[0];
     const currencySign = currencyFormat[1];
@@ -64,6 +71,21 @@ class SearchRoute extends Component {
     const currencySign = currencyString.split(/([0-9]+)/)[0];
     const amount = parseInt(currencyString.split(/([0-9]+)/)[1]);
     return [amount, currencySign];
+  };
+
+  getIPInfo = async () => {
+    const response = await fetch("https://ipapi.co/json/");
+    return response.json();
+  };
+
+  handleCountryCode = (countryCode, continentCode) => {
+    if (countryCode === "GB") {
+      return "UK";
+    } else if (continentCode === "EU" && countryCode !== "GB") {
+      return "EU";
+    } else if (continentCode === "NA") {
+      return "NA";
+    }
   };
 
   render() {
