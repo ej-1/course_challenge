@@ -54,6 +54,8 @@ class SearchRoute extends Component {
 
   // rename later
   onSelect = slug => {
+    // If it course has not been selected before. This is to prevent doing things again
+    // and adding costs again.
     if (!this.state.selectedCourses.includes(slug)) {
       this.highlight(slug);
       const selectedCourse = this.state.coursesDetails.find(
