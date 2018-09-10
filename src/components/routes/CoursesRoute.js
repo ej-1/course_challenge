@@ -56,7 +56,7 @@ class SearchRoute extends Component {
   onSelect = slug => {
     if (!this.state.selectedCourses.includes(slug)) {
       this.highlight(slug);
-      const selectedCourse = this.state.coursesDetails.filter(
+      const selectedCourse = this.state.coursesDetails.find(
         course => course.slug === slug
       )[0];
       const cost = selectedCourse.price[this.state.userContinentCode].total;
