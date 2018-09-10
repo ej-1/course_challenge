@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fetch from "cross-fetch";
 import CoursesTable from "../lists/courses-table";
 import SumCounter from "../cart/sum-counter";
 import { getCourses, getCourse } from "../../services/api";
