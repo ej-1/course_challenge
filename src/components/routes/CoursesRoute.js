@@ -41,11 +41,13 @@ class SearchRoute extends Component {
   }
 
   getCoursesDetails = async slugs => {
-    const courseRequests = slugs.map(slug => getCourse(slug));
+    const courseRequests = slugs.map(getCourse);
     const courseDetails = await Promise.all(courseRequests);
     this.setState({ coursesDetails: courseDetails });
   };
 
+  // Direct DOM manipulation. Might be refactored later.
+  // Also, maybe not hardcode className, but send it in instead.
   highlight = slug => {
     const element = document.getElementById(slug);
     element.className = "selected";
