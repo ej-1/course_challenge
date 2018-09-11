@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CourseRow renders correctly 1`] = `
+<tr
+  id="/how-to-write-tests"
+  onClick={[Function]}
+>
+  <td>
+    How to write tests
+  </td>
+  <td>
+    Erik W. Jonsson
+  </td>
+  <td>
+    Monday, September 17th, 2018
+  </td>
+</tr>
+`;

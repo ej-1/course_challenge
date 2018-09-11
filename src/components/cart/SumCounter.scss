@@ -1,0 +1,13 @@
+@import "./main.scss";
+
+.sum-counter {
+  background-color: $primary-background;
+  margin-top: 70px;
+  font-size: 15px;
+  font-family: $primary-font-stack;
+  font-weight: $primary-font-weight;
+  color: $primary-font-color;
+  padding: 30px;
+  background-color: $primary-background;
+  border: 2px solid $primary-background;
+}
