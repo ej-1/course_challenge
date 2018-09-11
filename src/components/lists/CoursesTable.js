@@ -3,7 +3,7 @@ import RowMapper from "./mappers";
 import "../lists/CoursesTable.css";
 
 const CoursesTable = ({ courses, onSelect }) => (
-  <table className="CoursesTable">
+  <table className="courses-table">
     <tr>
       <th>Title</th>
       <th>Author</th>
