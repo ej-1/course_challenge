@@ -1,10 +1,10 @@
 import React from "react";
 import "../cart/SumCounter.css";
 
-const Sum = ({ sum, currencySign }) => (
+const SumCounter = ({ sum, currencySign }) => (
   <div className="sum-counter">
     Total cost: {sum} {currencySign}
   </div>
 );
 
-export default Sum;
+export default SumCounter;
