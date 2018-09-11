@@ -28,7 +28,12 @@
 - onSelect() I would probably split up further so the cost calculation logic and setting the state is handled in a separate function. There should be more focus on single-responsibility than there is right now.
 - A integration test would be good to see in general, especially if this feature is something that could collide with other logic.
 - In a integration tests I would focus on testing that when clicking on a CourseRow state is lifted up to CoursesRoute all the way from CourseRow and then calls the highlight() function and the function for calculating cost which I would extract things into.
+- If I decide against the integration test it would be if there is a lack of time and unit testing and manually testing the feature is good enought. Given also that it is a pretty standalone feature that does not collide or depend to much on other logic in a bigger app.
 
 ##### Other things to test, but that would be more expensive.
 
 - That state with courses and courseDetails are set in CoursesRoute. Test that when API calls are made and other such functions that setState works.
+
+#### CSS
+
+- Should add a bit of padding to the right side of CourseRow.
