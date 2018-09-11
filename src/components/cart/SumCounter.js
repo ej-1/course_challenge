@@ -1,8 +1,8 @@
 import React from "react";
-import "../cart/sum-counter.css";
+import "../cart/SumCounter.css";
 
 const Sum = ({ sum, currencySign }) => (
-  <div className="sum-counter">
+  <div className="SumCounter">
     Total cost: {sum} {currencySign}
   </div>
 );

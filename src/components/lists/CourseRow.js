@@ -1,5 +1,5 @@
 import React from "react";
-import "../lists/course-row.css";
+import "../lists/CourseRow.css";
 
 const CourseRow = ({ courseData, slug, onSelect }) => (
   <tr key={courseData.title} id={slug} onClick={() => onSelect(slug)}>

@@ -1,5 +1,5 @@
 import React from "react";
-import CourseRow from "./course-row";
+import CourseRow from "./CourseRow";
 
 const RowMapper = (courses, onSelect) => {
   const coursesRows = [];

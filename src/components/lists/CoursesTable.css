@@ -1,0 +1,12 @@
+.CoursesTable {
+  background-color: #fff;
+  margin-top: 70px;
+  font-size: 15px;
+  font-family: Helvetica, sans-serif; }
+  .CoursesTable th {
+    text-align: left; }
+  .CoursesTable td {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    font-weight: 100; }

@@ -1,9 +1,9 @@
 import React from "react";
 import RowMapper from "./mappers";
-import "../lists/courses-table.css";
+import "../lists/CoursesTable.css";
 
 const CoursesTable = ({ courses, onSelect }) => (
-  <table className="courses-table">
+  <table className="CoursesTable">
     <tr>
       <th>Title</th>
       <th>Author</th>

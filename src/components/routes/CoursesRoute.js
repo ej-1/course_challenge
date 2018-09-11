@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import CoursesTable from "../lists/courses-table";
-import SumCounter from "../cart/sum-counter";
+import CoursesTable from "../lists/CoursesTable";
+import SumCounter from "../cart/SumCounter";
 import { getCourses, getCourse } from "../../services/api";
 import { handleCountryCode, getIPInfo } from "../../helpers/region-helper";
 import { Grid, Row, Col } from "react-bootstrap";
